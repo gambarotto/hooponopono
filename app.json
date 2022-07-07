@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "hooponopono",
+    "slug": "hooponopono",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
