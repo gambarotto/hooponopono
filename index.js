@@ -1,4 +1,7 @@
 import { registerRootComponent } from 'expo';
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(["Unhandled promise rejection: Error: You cannot check for updates in development mode. To test manual updates, publish your project using `expo publish` and open the published version in this development client."])
 
 import App from './App';
 
