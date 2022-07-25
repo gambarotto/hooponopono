@@ -1,10 +1,11 @@
-import styled, { css } from "styled-components/native";
+import styled, { css } from 'styled-components/native';
 import {
   heightPixel,
   pixelSizeHorizontal,
   pixelSizeVertical,
   widthPixel,
-} from "../../helpers/sizeCalculator";
+  fontPixel,
+} from '../../helpers/sizeCalculator';
 
 interface Props {
   marginBottom: number;
@@ -29,8 +30,8 @@ export const Container = styled.TouchableOpacity<Props>`
   `}
 `;
 export const TextButton = styled.Text`
-  font-size: ${({ theme }) => theme.fontSize.textButtom};
-  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${`${fontPixel(28)}px`};
+  font-family: ${({ theme }) => theme.fonts.lobster};
   ${(props) => css`
     color: ${`${props.theme.colors.primary}`};
   `}

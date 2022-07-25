@@ -1,13 +1,13 @@
-import { FlatList, StyleSheet } from "react-native";
-import styled, { css } from "styled-components/native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { FlatList, StyleSheet } from 'react-native';
+import styled, { css } from 'styled-components/native';
+import { MaterialIcons } from '@expo/vector-icons';
 import {
   heightPixel,
   pixelSizeHorizontal,
   pixelSizeVertical,
   widthPixel,
   fontPixel,
-} from "../../helpers/sizeCalculator";
+} from '../../helpers/sizeCalculator';
 
 interface ItensProps {
   title: string;
@@ -26,38 +26,35 @@ export const styles = StyleSheet.create({
     paddingBottom: pixelSizeVertical(20),
     paddingLeft: pixelSizeHorizontal(20),
     paddingRight: pixelSizeHorizontal(20),
-    alignItems: "center",
+    alignItems: 'center',
   },
 });
 export const Container = styled.ImageBackground``;
 export const TextInformation = styled.Text`
   ${(props) => css`
-    color: ${`${props.theme.colors.secondary}`};
+    color: ${`${props.theme.colors.primary}`};
     font-size: ${`${props.theme.fontSize.mainText}`};
   `}
-  font-family: ${({ theme }) => theme.fonts.regular};
+  font-family: ${({ theme }) => theme.fonts.comfortaa};
   margin-top: ${`${pixelSizeVertical(40)}px`};
   margin-bottom: ${`${pixelSizeVertical(36)}px`};
   text-align: center;
 `;
 export const HooponoponoList = styled(
-  FlatList as new () => FlatList<ItensProps>
+  FlatList as new () => FlatList<ItensProps>,
 )``;
 export const ContainerItem = styled.View`
   flex-direction: row;
   justify-content: space-between;
   height: ${`${heightPixel(70)}px`};
   width: 100%;
-  border-radius: 4px;
-  padding-top: ${`${pixelSizeVertical(0)}px`};
-  padding-bottom: ${`${pixelSizeVertical(0)}px`};
   padding-left: ${`${pixelSizeHorizontal(10)}px`};
   padding-right: ${`${pixelSizeHorizontal(10)}px`};
-  border-bottom-width: 0.5px;
+  margin-bottom: ${`${pixelSizeVertical(2)}px`};
   ${(props) => css`
-    border-bottom-color: ${`${props.theme.colors.gray5}`};
     background-color: ${`${props.theme.colors.white}`};
-  `}
+  `};
+  border-radius: 5px;
 `;
 export const ContainerTitleItem = styled.TouchableOpacity`
   flex: 1;
@@ -69,7 +66,7 @@ export const TitleItem = styled.Text`
     color: ${`${props.theme.colors.primary}`};
     font-size: ${`${props.theme.fontSize.informationText}`};
   `}
-  font-family: ${({ theme }) => theme.fonts.bold};
+  font-family: ${({ theme }) => theme.fonts.lobster};
 `;
 export const ContainerIcons = styled.View`
   flex-direction: row;

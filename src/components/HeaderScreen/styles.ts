@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components/native";
-import { MaterialIcons } from "@expo/vector-icons";
-import Constants from "expo-constants";
-import { heightPixel } from "../../helpers/sizeCalculator";
+import styled, { css } from 'styled-components/native';
+import { MaterialIcons } from '@expo/vector-icons';
+import Constants from 'expo-constants';
+import { heightPixel } from '../../helpers/sizeCalculator';
 
 const { statusBarHeight } = Constants;
 
@@ -25,9 +25,9 @@ export const IconContainer = styled.TouchableOpacity`
 `;
 export const IconBack = styled(MaterialIcons)``;
 export const TitleScreen = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.bold};
+  font-family: ${({ theme }) => theme.fonts.lobster};
   ${(props) => css`
     font-size: ${`${props.theme.fontSize.titleText}`};
-    color: ${`${props.theme.colors.secondary}`};
+    color: ${`${props.theme.colors.primary}`};
   `}
 `;

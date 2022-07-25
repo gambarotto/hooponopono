@@ -1,10 +1,10 @@
-import styled, { css } from "styled-components/native";
-import Modal from "react-native-modal";
+import styled, { css } from 'styled-components/native';
+import Modal from 'react-native-modal';
 import {
   heightPixel,
   pixelSizeHorizontal,
   pixelSizeVertical,
-} from "../../helpers/sizeCalculator";
+} from '../../helpers/sizeCalculator';
 
 interface ButtonProps {
   oneButton: boolean;

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components/native';
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import {
   fontPixel,
@@ -18,42 +18,36 @@ export const Container = styled.ScrollView`
     background-color: ${`${props.theme.colors.white}`};
   `}
 `;
-export const BackgroundImage = styled.ImageBackground`
-  height: ${`${HEIGHT_DEVICE}px`};
-  margin-top: ${`${statusBarHeight}px`};
-  align-items: center;
-  padding-top: ${`${pixelSizeVertical(20)}px`};
-  padding-bottom: ${`${pixelSizeVertical(20)}px`};
-  padding-left: ${`${pixelSizeHorizontal(20)}px`};
-  padding-right: ${`${pixelSizeHorizontal(20)}px`};
+export const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    height: HEIGHT_DEVICE,
+    marginTop: statusBarHeight,
+    paddingTop: pixelSizeVertical(20),
+    paddingBottom: pixelSizeVertical(20),
+    paddingLeft: pixelSizeHorizontal(20),
+    paddingRight: pixelSizeHorizontal(20),
+    alignItems: 'center',
+  },
+});
+
+export const TextInformation = styled.Text`
+  ${(props) => css`
+    color: ${`${props.theme.colors.primary}`};
+    font-size: ${`${props.theme.fontSize.mainText}`};
+  `}
+  font-family: ${({ theme }) => theme.fonts.comfortaa};
+  margin-top: ${`${pixelSizeVertical(44)}px`};
 `;
 export const ContainerTitleHooponopono = styled.View`
   width: 100%;
   height: ${`${heightPixel(70)}px`};
-  border-radius: 4px;
-  border-width: 1px;
-  ${(props) => css`
-    border-color: ${`${props.theme.colors.primary}`};
-  `}
-  margin-top: ${`${pixelSizeVertical(30)}px`};
-`;
-export const TextInformation = styled.Text`
-  ${(props) => css`
-    color: ${`${props.theme.colors.secondary}`};
-    font-size: ${`${props.theme.fontSize.mainText}`};
-  `}
-  font-family: ${({ theme }) => theme.fonts.regular};
-  margin-top: ${`${pixelSizeVertical(24)}px`};
+  margin-top: ${`${pixelSizeVertical(70)}px`};
+  margin-bottom: ${`${pixelSizeVertical(34)}px`};
 `;
 export const BoxInputs = styled.View`
   width: 100%;
-  height: ${`${heightPixel(250)}px`};
-  border-radius: 4px;
-  border-width: 1px;
-  ${(props) => css`
-    border-color: ${`${props.theme.colors.primary}`};
-    background-color: ${`${props.theme.colors.white}`};
-  `}
+  height: ${`${heightPixel(350)}px`};
   margin-top: ${`${pixelSizeVertical(12)}px`};
   padding-top: ${`${pixelSizeVertical(20)}px`};
   padding-bottom: ${`${pixelSizeVertical(20)}px`};
@@ -68,7 +62,7 @@ export const ContainerTextInput = styled.View`
   width: 100%;
   border-bottom-width: 1px;
   ${(props) => css`
-    border-bottom-color: ${`${props.theme.colors.secondary}`};
+    border-bottom-color: ${`${props.theme.colors.primary}`};
   `}
 `;
 export const TextInputApp = styled.TextInput`
@@ -86,9 +80,5 @@ export const ContainerButton = styled.View`
   position: absolute;
   width: 100%;
   left: ${`${pixelSizeVertical(20)}px`};
-  bottom: ${`${pixelSizeHorizontal(20)}px`};
-  padding-top: ${`${pixelSizeVertical(0)}px`};
-  padding-bottom: ${`${pixelSizeVertical(0)}px`};
-  padding-left: ${`${pixelSizeHorizontal(20)}px`};
-  padding-right: ${`${pixelSizeHorizontal(20)}px`};
+  bottom: ${`${pixelSizeHorizontal(30)}px`};
 `;

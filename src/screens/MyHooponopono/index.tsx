@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from "react";
-import { FlatList, ImageBackground } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import HeaderScreen from "../../components/HeaderScreen";
+import React, { useCallback, useState } from 'react';
+import { FlatList, ImageBackground } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import HeaderScreen from '../../components/HeaderScreen';
 
 import {
   styles,
@@ -13,10 +13,10 @@ import {
   Icon,
   TextInformation,
   TitleItem,
-} from "./styles";
-import bg from "../../assets/images/bg-menu.png";
-import ModalNotification from "../../components/ModalNotification";
-import handleErrors from "../../helpers/errors";
+} from './styles';
+import bg from '../../assets/images/bg-all.png';
+import ModalNotification from '../../components/ModalNotification';
+import handleErrors from '../../helpers/errors';
 
 interface ItensProps {
   id: string;
@@ -38,7 +38,7 @@ const MyHooponopono: React.FC = () => {
 
   async function loadData(): Promise<void> {
     try {
-      const hooponoponosDB = await AsyncStorage.getItem("@hooponoponos");
+      const hooponoponosDB = await AsyncStorage.getItem('@hooponoponos');
       if (hooponoponosDB) {
         setHooponoponos(JSON.parse(hooponoponosDB));
       } else {
@@ -46,22 +46,22 @@ const MyHooponopono: React.FC = () => {
       }
     } catch (error) {
       handleErrors(
-        "Ops... algo deu errado ao carregar os dados, tente novamente",
-        error
+        'Ops... algo deu errado ao carregar os dados, tente novamente',
+        error,
       );
     }
   }
   useFocusEffect(
     useCallback(() => {
       loadData();
-    }, [])
+    }, []),
   );
 
   const handleSelect = useCallback(
     (item: ItensProps) => {
-      navigation.navigate("Hooponopono", item);
+      navigation.navigate('Hooponopono', item);
     },
-    [navigation]
+    [navigation],
   );
 
   const handleDelete = useCallback((item: ItensProps) => {
@@ -71,32 +71,32 @@ const MyHooponopono: React.FC = () => {
 
   const modalHandleDelete = useCallback(async () => {
     try {
-      const hooponoponosDB = await AsyncStorage.getItem("@hooponoponos");
+      const hooponoponosDB = await AsyncStorage.getItem('@hooponoponos');
       if (hooponoponosDB) {
         const hooponoponoConv = JSON.parse(hooponoponosDB) as ItensProps[];
         const newData = hooponoponoConv.filter(
-          (hoop) => hoop.id !== selectedHooponopono?.id
+          (hoop) => hoop.id !== selectedHooponopono?.id,
         );
 
-        await AsyncStorage.setItem("@hooponoponos", JSON.stringify(newData));
+        await AsyncStorage.setItem('@hooponoponos', JSON.stringify(newData));
         setHooponoponos((state) =>
-          state.filter((hoop) => hoop.id !== selectedHooponopono?.id)
+          state.filter((hoop) => hoop.id !== selectedHooponopono?.id),
         );
         setOpenedModal(false);
       }
     } catch (error) {
       handleErrors(
-        "Ops... algo deu errado ao excluir o hooponopono, tente novamente",
-        error
+        'Ops... algo deu errado ao excluir o hooponopono, tente novamente',
+        error,
       );
     }
   }, [selectedHooponopono]);
 
   const handleEdit = useCallback(
     (item: ItensProps, index: number) => {
-      navigation.navigate("NewHooponopono", { item, index });
+      navigation.navigate('NewHooponopono', { item, index });
     },
-    [navigation]
+    [navigation],
   );
 
   return (
@@ -106,11 +106,24 @@ const MyHooponopono: React.FC = () => {
         Estes são seus ho’oponoponos, selecione o que você deseja fazer
       </TextInformation>
       <FlatList
-        style={{ width: "100%" }}
+        style={{ width: '100%' }}
+        contentContainerStyle={{ padding: 4 }}
         data={hooponoponos}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <ContainerItem>
+          <ContainerItem
+            style={{
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 10,
+                height: 2,
+              },
+              shadowOpacity: 0,
+              shadowRadius: 1.84,
+
+              elevation: 5,
+            }}
+          >
             <ContainerTitleItem onPress={() => handleSelect(item)}>
               <TitleItem>{`${item.title}`}</TitleItem>
             </ContainerTitleItem>

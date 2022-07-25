@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471776752827",
+    "project_id": "ho-oponopono-426b0",
+    "storage_bucket": "ho-oponopono-426b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471776752827:android:690182204c0e21b5ce259e",
+        "android_client_info": {
+          "package_name": "com.hooponopono"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471776752827-veelct76au107d55k978sd9rc4sj51gr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBix_UU8DdkQRHCihzXYMH14xrLzL7YLDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471776752827-veelct76au107d55k978sd9rc4sj51gr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

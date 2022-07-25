@@ -1,9 +1,9 @@
-import React from "react";
-import { TextProps } from "react-native";
+import React from 'react';
+import { TextProps } from 'react-native';
 
-import { Container } from "./styles";
+import { Container } from './styles';
 
-import themeGlobal from "../../global/styles";
+import themeGlobal from '../../global/styles';
 
 interface ITextProps extends TextProps {
   reduceFont: boolean;

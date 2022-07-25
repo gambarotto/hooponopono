@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Container,
   ContainerButtons,
@@ -9,7 +9,7 @@ import {
   ModalTextOkButton,
   TextInformation,
   Title,
-} from "./styles";
+} from './styles';
 
 interface MyModalProps {
   title: string;
@@ -25,8 +25,8 @@ interface MyModalProps {
 const ModalNotification: React.FC<MyModalProps> = ({
   title,
   text,
-  textButtonOk = "Ok",
-  textButtonCancel = "Cancelar",
+  textButtonOk = 'Ok',
+  textButtonCancel = 'Cancelar',
   isVisible,
   oneButton = false,
   confirmFunction,

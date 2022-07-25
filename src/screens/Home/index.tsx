@@ -1,28 +1,29 @@
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
-import { ImageBackground } from "react-native";
-import MainButton from "../../components/MainButton";
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { ImageBackground } from 'react-native';
+import MainButton from '../../components/MainButton';
 
-import logo from "../../assets/images/logo.png";
-import bg from "../../assets/images/bg-menu.png";
+import logo from '../../assets/images/logo.png';
+import bg from '../../assets/images/bg-home.png';
 
-import { Brand, Logo, styles } from "./styles";
+import { Logo, styles, ContainerButtons } from './styles';
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
   return (
     <ImageBackground style={styles.container} source={bg}>
-      <Brand>{`Ho'oponopono`}</Brand>
       <Logo source={logo} resizeMode="contain" />
-      <MainButton
-        onPress={() => navigation.navigate("NewHooponopono")}
-        text="Novo Ho'oponopono"
-        marginBottom={24}
-      />
-      <MainButton
-        onPress={() => navigation.navigate("MyHooponopono")}
-        text="Meus Ho'oponoponos"
-      />
+      <ContainerButtons>
+        <MainButton
+          onPress={() => navigation.navigate('NewHooponopono')}
+          text="Novo Ho'oponopono"
+          marginBottom={24}
+        />
+        <MainButton
+          onPress={() => navigation.navigate('MyHooponopono')}
+          text="Meus Ho'oponoponos"
+        />
+      </ContainerButtons>
     </ImageBackground>
   );
 };

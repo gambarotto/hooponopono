@@ -1,20 +1,25 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Keyboard, TextInput, ToastAndroid } from 'react-native';
+import {
+  ImageBackground,
+  Keyboard,
+  TextInput,
+  ToastAndroid,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
-import bg from '../../assets/images/bg-menu.png';
+import bg from '../../assets/images/bg-new.png';
 import HeaderScreen from '../../components/HeaderScreen';
 import MainButton from '../../components/MainButton';
 import {
-  BackgroundImage,
-  BoxInputs,
   Container,
   ContainerButton,
   ContainerTextInput,
   ContainerTitleHooponopono,
   TextInformation,
   TextInputApp,
+  styles,
+  BoxInputs,
 } from './styles';
 import themeGlobal from '../../global/styles';
 import ModalNotification from '../../components/ModalNotification';
@@ -214,24 +219,26 @@ const NewHooponopono: React.FC = () => {
   }, [navigation, routeParams]);
   return (
     <Container>
-      <BackgroundImage source={bg}>
+      <ImageBackground style={styles.background} source={bg}>
         <HeaderScreen text="Novo Ho'oponopono" statusBarDiscount />
-        <ContainerTitleHooponopono>
-          <TextInputApp
-            maxLength={30}
-            defaultValue={hooponopono.title}
-            placeholder={`Título do Ho'oponopono`}
-            placeholderTextColor={themeGlobal.colors.gray4}
-            onChangeText={(text) => handleInput(text, 'title')}
-            autoCapitalize="words"
-            returnKeyType="next"
-            onSubmitEditing={() => {
-              refTextInputApp1.current?.focus();
-            }}
-          />
-        </ContainerTitleHooponopono>
         <TextInformation>{`Escreva aqui seu ho'oponopono`}</TextInformation>
         <BoxInputs>
+          <ContainerTitleHooponopono>
+            <ContainerTextInput>
+              <TextInputApp
+                maxLength={30}
+                defaultValue={hooponopono.title}
+                placeholder={`Título do Ho'oponopono`}
+                placeholderTextColor={themeGlobal.colors.gray4}
+                onChangeText={(text) => handleInput(text, 'title')}
+                autoCapitalize="words"
+                returnKeyType="next"
+                onSubmitEditing={() => {
+                  refTextInputApp1.current?.focus();
+                }}
+              />
+            </ContainerTextInput>
+          </ContainerTitleHooponopono>
           <ContainerTextInput>
             <TextInputApp
               ref={refTextInputApp1}
@@ -308,7 +315,7 @@ const NewHooponopono: React.FC = () => {
             <MainButton text="Salvar" onPress={handleSave} />
           </ContainerButton>
         )}
-      </BackgroundImage>
+      </ImageBackground>
       <ModalNotification
         title={modalInfos.title}
         text={modalInfos.text}

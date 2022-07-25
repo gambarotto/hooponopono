@@ -1,7 +1,7 @@
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
-import { Container, IconBack, IconContainer, TitleScreen } from "./styles";
-import themeGlobal from "../../global/styles";
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { Container, IconBack, IconContainer, TitleScreen } from './styles';
+import themeGlobal from '../../global/styles';
 
 interface IProps {
   text?: string;
@@ -22,7 +22,7 @@ const HeaderScreen: React.FC<IProps> = ({
         <IconBack
           name="arrow-back-ios"
           size={20}
-          color={iconColor || themeGlobal.colors.secondary}
+          color={iconColor || themeGlobal.colors.primary}
         />
       </IconContainer>
       {text && <TitleScreen>{text}</TitleScreen>}

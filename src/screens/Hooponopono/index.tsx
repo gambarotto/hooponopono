@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { StatusBar } from "expo-status-bar";
+import React, { useCallback, useEffect, useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
 
-import { useRoute } from "@react-navigation/native";
-import { ImageBackground } from "react-native";
-import { Container, styles, ContainerHooponopono, CountNumber } from "./styles";
-import bg from "../../assets/images/bg-hoop.png";
-import HeaderScreen from "../../components/HeaderScreen";
-import themeGlobal from "../../global/styles";
-import TextWithShadow from "../../components/TextWithShadow";
+import { useRoute } from '@react-navigation/native';
+import { ImageBackground } from 'react-native';
+import { Container, styles, ContainerHooponopono, CountNumber } from './styles';
+import bg from '../../assets/images/bg-hoop.png';
+import HeaderScreen from '../../components/HeaderScreen';
+import themeGlobal from '../../global/styles';
+import TextWithShadow from '../../components/TextWithShadow';
 
 interface ItensProps {
   title: string;

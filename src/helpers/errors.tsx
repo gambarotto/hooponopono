@@ -1,10 +1,10 @@
-import { ToastAndroid } from "react-native";
+import { ToastAndroid } from 'react-native';
 
 const handleErrors = (message: string, error: unknown): void => {
   ToastAndroid.showWithGravity(
     message,
     ToastAndroid.SHORT,
-    ToastAndroid.CENTER
+    ToastAndroid.CENTER,
   );
   console.log(JSON.stringify(error));
 };

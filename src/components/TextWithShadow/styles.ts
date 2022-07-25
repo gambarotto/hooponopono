@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components/native";
-import { fontPixel } from "../../helpers/sizeCalculator";
+import styled, { css } from 'styled-components/native';
+import { fontPixel } from '../../helpers/sizeCalculator';
 
 interface TextProps {
   reduceFont: boolean;

@@ -1,7 +1,7 @@
-import { Dimensions, StyleSheet } from "react-native";
-import styled, { css } from "styled-components/native";
+import { Dimensions, StyleSheet } from 'react-native';
+import styled, { css } from 'styled-components/native';
 
-const HEIGHT_DEVICE = Dimensions.get("window").height;
+const HEIGHT_DEVICE = Dimensions.get('window').height;
 
 interface TextProps {
   reduceFont: boolean;
@@ -10,8 +10,8 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    alignItems: "center",
-    position: "relative",
+    alignItems: 'center',
+    position: 'relative',
   },
 });
 export const Container = styled.TouchableOpacity`

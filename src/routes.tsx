@@ -1,11 +1,11 @@
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Home from "./screens/Home";
-import NewHooponopono from "./screens/NewHooponopono";
-import MyHooponopono from "./screens/MyHooponopono";
-import Hooponopono from "./screens/Hooponopono";
+import Home from './screens/Home';
+import NewHooponopono from './screens/NewHooponopono';
+import MyHooponopono from './screens/MyHooponopono';
+import Hooponopono from './screens/Hooponopono';
 
 interface ItensProps {
   id: string;
