@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { useRoute } from '@react-navigation/native';
 import { ImageBackground } from 'react-native';
-import { Container, styles, ContainerHooponopono, CountNumber } from './styles';
+import { Container, styles, ContainerHooponopono } from './styles';
 import bg from '../../assets/images/bg-hoop.png';
 import HeaderScreen from '../../components/HeaderScreen';
 import themeGlobal from '../../global/styles';
@@ -39,7 +39,7 @@ const Hooponopono: React.FC = () => {
       <ImageBackground style={styles.container} source={bg}>
         <HeaderScreen iconColor={themeGlobal.colors.white} />
         <ContainerHooponopono>
-          <CountNumber>{count}</CountNumber>
+          <TextWithShadow text={String(count)} sizeNumber={86} />
           <TextWithShadow
             reduceFont={reduceFontSize}
             text={routeParams.hooponopono.line1}

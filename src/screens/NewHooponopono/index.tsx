@@ -24,6 +24,7 @@ import {
 import themeGlobal from '../../global/styles';
 import ModalNotification from '../../components/ModalNotification';
 import handleErrors from '../../helpers/errors';
+import { lightenDarkenColor } from '../../helpers/handleColors';
 
 interface Hooponopono {
   line1: string;
@@ -220,7 +221,11 @@ const NewHooponopono: React.FC = () => {
   return (
     <Container>
       <ImageBackground style={styles.background} source={bg}>
-        <HeaderScreen text="Novo Ho'oponopono" statusBarDiscount />
+        <HeaderScreen
+          text="Novo Ho'oponopono"
+          iconColor={themeGlobal.colors.chakras[0]}
+          statusBarDiscount
+        />
         <TextInformation>{`Escreva aqui seu ho'oponopono`}</TextInformation>
         <BoxInputs>
           <ContainerTitleHooponopono>
@@ -312,7 +317,15 @@ const NewHooponopono: React.FC = () => {
         </BoxInputs>
         {!keybordShow && (
           <ContainerButton>
-            <MainButton text="Salvar" onPress={handleSave} />
+            <MainButton
+              text="Salvar"
+              onPress={handleSave}
+              textColor={themeGlobal.colors.gray6}
+              colors={[
+                lightenDarkenColor('#a18cd1', 0),
+                lightenDarkenColor('#a18cd1', 20),
+              ]}
+            />
           </ContainerButton>
         )}
       </ImageBackground>

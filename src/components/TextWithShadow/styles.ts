@@ -3,6 +3,7 @@ import { fontPixel } from '../../helpers/sizeCalculator';
 
 interface TextProps {
   reduceFont: boolean;
+  sizeNumber: number | undefined;
 }
 
 export const Container = styled.Text<TextProps>`
@@ -12,11 +13,17 @@ export const Container = styled.Text<TextProps>`
   ${(props) =>
     !props.reduceFont
       ? css`
-          font-size: ${`${props.theme.fontSize.mainText} `};
+          font-size: ${`${fontPixel(46)}px`};
         `
       : css`
-          font-size: ${`${fontPixel(16)}px`};
+          font-size: ${`${fontPixel(29)}px`};
         `}
-  font-family: ${({ theme }) => theme.fonts.bold};
+  ${({ sizeNumber }) =>
+    sizeNumber &&
+    css`
+      font-size: ${`${fontPixel(sizeNumber)}px`};
+    `}
+  font-family: ${({ theme }) => theme.fonts.lobster};
   text-align: center;
+  letter-spacing: 1.5px;
 `;

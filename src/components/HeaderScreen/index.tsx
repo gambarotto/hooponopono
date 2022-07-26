@@ -25,7 +25,11 @@ const HeaderScreen: React.FC<IProps> = ({
           color={iconColor || themeGlobal.colors.primary}
         />
       </IconContainer>
-      {text && <TitleScreen>{text}</TitleScreen>}
+      {text && (
+        <TitleScreen color={iconColor || themeGlobal.colors.primary}>
+          {text}
+        </TitleScreen>
+      )}
     </Container>
   );
 };

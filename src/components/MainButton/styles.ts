@@ -10,6 +10,9 @@ import {
 interface Props {
   marginBottom: number;
 }
+interface TextProps {
+  color: string;
+}
 
 export const Container = styled.TouchableOpacity<Props>`
   flex: 1;
@@ -29,10 +32,10 @@ export const Container = styled.TouchableOpacity<Props>`
     border-color: ${`${props.theme.colors.primary}`};
   `}
 `;
-export const TextButton = styled.Text`
+export const TextButton = styled.Text<TextProps>`
   font-size: ${`${fontPixel(28)}px`};
   font-family: ${({ theme }) => theme.fonts.lobster};
-  ${(props) => css`
-    color: ${`${props.theme.colors.primary}`};
+  ${({ theme, color }) => css`
+    color: ${color || `${theme.colors.primary}`};
   `}
 `;

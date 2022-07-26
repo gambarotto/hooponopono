@@ -8,6 +8,9 @@ const { statusBarHeight } = Constants;
 interface PropsContainer {
   statusBarDiscount: boolean;
 }
+interface TitleProps {
+  color: string;
+}
 export const Container = styled.View<PropsContainer>`
   position: relative;
   width: 100%;
@@ -24,10 +27,10 @@ export const IconContainer = styled.TouchableOpacity`
   left: 0;
 `;
 export const IconBack = styled(MaterialIcons)``;
-export const TitleScreen = styled.Text`
+export const TitleScreen = styled.Text<TitleProps>`
   font-family: ${({ theme }) => theme.fonts.lobster};
-  ${(props) => css`
-    font-size: ${`${props.theme.fontSize.titleText}`};
-    color: ${`${props.theme.colors.primary}`};
+  ${({ theme, color }) => css`
+    font-size: ${`${theme.fontSize.titleText}`};
+    color: ${color};
   `}
 `;

@@ -14,6 +14,15 @@ export default {
     gray6: '#f2f2f2',
     red: '#EE4B2B',
     black: '#000',
+    chakras: {
+      '0': 'rgba(86, 53, 255, 0.7)',
+      '1': '#2F80ED',
+      '2': 'rgba(47, 128, 237, 0.5)',
+      '3': '#8BC34A',
+      '4': '#FFC107',
+      '5': '#E64A19',
+      '6': '#D32F2F',
+    },
   },
   fontSize: {
     numberHooponopono: `${fontPixel(58)}px`,

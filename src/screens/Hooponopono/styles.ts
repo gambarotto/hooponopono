@@ -28,15 +28,6 @@ export const ContainerHooponopono = styled.View`
   width: 100%;
   bottom: ${`${HEIGHT_DEVICE / 3.5}px`};
 `;
-export const CountNumber = styled.Text`
-  ${(props) => css`
-    color: ${`${props.theme.colors.white}`};
-    font-size: ${`${props.theme.fontSize.numberHooponopono}`};
-  `}
-  font-family: ${({ theme }) => theme.fonts.bold};
-  text-align: center;
-  margin-bottom: 24px;
-`;
 export const TextHooponopono = styled.Text<TextProps>`
   ${(props) => css`
     color: ${`${props.theme.colors.white}`};

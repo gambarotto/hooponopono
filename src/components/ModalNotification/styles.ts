@@ -20,29 +20,32 @@ export const ModalContainer = styled.View`
   height: ${`${heightPixel(250)}px`};
   ${(props) => css`
     background-color: ${`${props.theme.colors.white}`};
-  `}
+  `};
+  border-radius: 5px;
 `;
 export const Title = styled.Text`
+  ${(props) => css`
+    color: ${`${props.theme.colors.chakras[0]}`};
+    font-size: ${`${props.theme.fontSize.mainText}`};
+  `}
+  font-family: ${({ theme }) => theme.fonts.lobster};
+  margin-top: 12px;
+  text-align: center;
+  letter-spacing: 1.5px;
+`;
+export const TextInformation = styled.Text`
   ${(props) => css`
     color: ${`${props.theme.colors.primary}`};
     font-size: ${`${props.theme.fontSize.mainText}`};
   `}
-  font-family: ${({ theme }) => theme.fonts.bold};
-  margin-top: 8px;
-  text-align: center;
-`;
-export const TextInformation = styled.Text`
-  ${(props) => css`
-    color: ${`${props.theme.colors.secondary}`};
-    font-size: ${`${props.theme.fontSize.informationText}`};
-  `}
-  font-family: ${({ theme }) => theme.fonts.regular};
+  font-family: ${({ theme }) => theme.fonts.lobster};
   margin-top: ${`${pixelSizeVertical(30)}px`};
   text-align: center;
   padding-top: ${`${pixelSizeVertical(0)}px`};
   padding-bottom: ${`${pixelSizeVertical(0)}px`};
   padding-left: ${`${pixelSizeHorizontal(16)}px`};
   padding-right: ${`${pixelSizeHorizontal(16)}px`};
+  letter-spacing: 1.5px;
 `;
 export const ContainerButtons = styled.View`
   flex: 1;
@@ -99,10 +102,10 @@ export const ModalContainerOkButton = styled.TouchableOpacity<ButtonProps>`
 export const ModalTextOkButton = styled.Text<ButtonProps>`
   ${(props) => css`
     color: ${`${
-      props.oneButton ? props.theme.colors.secondary : props.theme.colors.white
+      props.oneButton ? props.theme.colors.chakras[0] : props.theme.colors.white
     }`};
     font-size: ${`${props.theme.fontSize.mainText}`};
   `}
-  font-family: ${({ theme }) => theme.fonts.regular};
+  font-family: ${({ theme }) => theme.fonts.lobster};
   text-align: center;
 `;

@@ -8,6 +8,7 @@ import {
   styles,
   ContainerIcon,
   ContainerIcons,
+  ContainerButton,
   ContainerItem,
   ContainerTitleItem,
   Icon,
@@ -17,6 +18,7 @@ import {
 import bg from '../../assets/images/bg-all.png';
 import ModalNotification from '../../components/ModalNotification';
 import handleErrors from '../../helpers/errors';
+import MainButton from '../../components/MainButton';
 
 interface ItensProps {
   id: string;
@@ -29,8 +31,11 @@ interface ItensProps {
     line5: string;
   };
 }
+type TitleItemProps = '0' | '1' | '2' | '3' | '4' | '5' | '6';
+
 const MyHooponopono: React.FC = () => {
   const [hooponoponos, setHooponoponos] = useState<ItensProps[]>([]);
+  const [noData, setNoData] = useState(false);
   const [selectedHooponopono, setSelectedHooponopono] = useState<ItensProps>();
   const [openedModal, setOpenedModal] = useState(false);
 
@@ -42,6 +47,7 @@ const MyHooponopono: React.FC = () => {
       if (hooponoponosDB) {
         setHooponoponos(JSON.parse(hooponoponosDB));
       } else {
+        setNoData(true);
         setHooponoponos([]);
       }
     } catch (error) {
@@ -56,19 +62,16 @@ const MyHooponopono: React.FC = () => {
       loadData();
     }, []),
   );
-
   const handleSelect = useCallback(
     (item: ItensProps) => {
       navigation.navigate('Hooponopono', item);
     },
     [navigation],
   );
-
   const handleDelete = useCallback((item: ItensProps) => {
     setSelectedHooponopono(item);
     setOpenedModal(true);
   }, []);
-
   const modalHandleDelete = useCallback(async () => {
     try {
       const hooponoponosDB = await AsyncStorage.getItem('@hooponoponos');
@@ -91,7 +94,6 @@ const MyHooponopono: React.FC = () => {
       );
     }
   }, [selectedHooponopono]);
-
   const handleEdit = useCallback(
     (item: ItensProps, index: number) => {
       navigation.navigate('NewHooponopono', { item, index });
@@ -103,8 +105,15 @@ const MyHooponopono: React.FC = () => {
     <ImageBackground style={styles.container} source={bg}>
       <HeaderScreen text={`Meus Ho'oponoponos`} />
       <TextInformation>
-        Estes são seus ho’oponoponos, selecione o que você deseja fazer
+        {!noData
+          ? 'Estes são seus ho’oponoponos, selecione o que você deseja fazer'
+          : 'Ops.......Voce ainda não criou um ho’oponopono, aperte o botão abaixo para criar o seu primeiro'}
       </TextInformation>
+      {noData && (
+        <ContainerButton>
+          <MainButton text={`Criar Ho'oponopono`} />
+        </ContainerButton>
+      )}
       <FlatList
         style={{ width: '100%' }}
         contentContainerStyle={{ padding: 4 }}
@@ -121,11 +130,13 @@ const MyHooponopono: React.FC = () => {
               shadowOpacity: 0,
               shadowRadius: 1.84,
 
-              elevation: 5,
+              elevation: 2,
             }}
           >
             <ContainerTitleItem onPress={() => handleSelect(item)}>
-              <TitleItem>{`${item.title}`}</TitleItem>
+              <TitleItem
+                colorChakra={String(index) as unknown as TitleItemProps}
+              >{`${item.title} ${index}`}</TitleItem>
             </ContainerTitleItem>
             <ContainerIcons>
               <ContainerIcon onPress={() => handleEdit(item, index)}>

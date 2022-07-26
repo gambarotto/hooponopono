@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
@@ -9,15 +9,8 @@ import {
   fontPixel,
 } from '../../helpers/sizeCalculator';
 
-interface ItensProps {
-  title: string;
-  hooponopono: {
-    line1: string;
-    line2: string;
-    line3: string;
-    line4: string;
-    line5: string;
-  };
+interface TitleItemProps {
+  colorChakra: '0' | '1' | '2' | '3' | '4' | '5' | '6';
 }
 export const styles = StyleSheet.create({
   container: {
@@ -40,9 +33,12 @@ export const TextInformation = styled.Text`
   margin-bottom: ${`${pixelSizeVertical(36)}px`};
   text-align: center;
 `;
-export const HooponoponoList = styled(
-  FlatList as new () => FlatList<ItensProps>,
-)``;
+export const ContainerButton = styled.View`
+  width: 100%;
+  height: 55px;
+  padding-left: ${`${pixelSizeHorizontal(20)}px`};
+  padding-right: ${`${pixelSizeHorizontal(20)}px`};
+`;
 export const ContainerItem = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -61,12 +57,13 @@ export const ContainerTitleItem = styled.TouchableOpacity`
   justify-content: center;
   align-items: flex-start;
 `;
-export const TitleItem = styled.Text`
-  ${(props) => css`
-    color: ${`${props.theme.colors.primary}`};
-    font-size: ${`${props.theme.fontSize.informationText}`};
+export const TitleItem = styled.Text<TitleItemProps>`
+  ${({ theme, colorChakra }) => css`
+    color: ${`${theme.colors.chakras[colorChakra]}`};
+    font-size: ${`${theme.fontSize.mainText}`};
   `}
   font-family: ${({ theme }) => theme.fonts.lobster};
+  letter-spacing: 1px;
 `;
 export const ContainerIcons = styled.View`
   flex-direction: row;

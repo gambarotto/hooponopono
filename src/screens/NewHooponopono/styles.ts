@@ -33,11 +33,12 @@ export const styles = StyleSheet.create({
 
 export const TextInformation = styled.Text`
   ${(props) => css`
-    color: ${`${props.theme.colors.primary}`};
+    color: ${`${props.theme.colors.chakras[0]}`};
     font-size: ${`${props.theme.fontSize.mainText}`};
   `}
-  font-family: ${({ theme }) => theme.fonts.comfortaa};
+  font-family: ${({ theme }) => theme.fonts.lobster};
   margin-top: ${`${pixelSizeVertical(44)}px`};
+  letter-spacing: 1.5px;
 `;
 export const ContainerTitleHooponopono = styled.View`
   width: 100%;
@@ -71,10 +72,11 @@ export const TextInputApp = styled.TextInput`
   align-items: center;
   text-align: center;
   ${(props) => css`
-    color: ${`${props.theme.colors.secondary}`};
+    color: ${`${props.theme.colors.chakras[0]}`};
   `}
-  font-family: ${({ theme }) => theme.fonts.regular};
+  font-family: ${({ theme }) => theme.fonts.lobster};
   font-size: ${`${fontPixel(24)}px`};
+  letter-spacing: 1.5px;
 `;
 export const ContainerButton = styled.View`
   position: absolute;
