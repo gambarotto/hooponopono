@@ -34,35 +34,37 @@ const Hooponopono: React.FC = () => {
     }
   }, [count]);
   return (
-    <Container activeOpacity={0.9} onPress={handleCount}>
-      <StatusBar style="light" />
-      <ImageBackground style={styles.container} source={bg}>
-        <HeaderScreen iconColor={themeGlobal.colors.white} />
-        <ContainerHooponopono>
-          <TextWithShadow text={String(count)} sizeNumber={86} />
-          <TextWithShadow
-            reduceFont={reduceFontSize}
-            text={routeParams.hooponopono.line1}
-          />
-          <TextWithShadow
-            reduceFont={reduceFontSize}
-            text={routeParams.hooponopono.line2}
-          />
-          <TextWithShadow
-            reduceFont={reduceFontSize}
-            text={routeParams.hooponopono.line3}
-          />
-          <TextWithShadow
-            reduceFont={reduceFontSize}
-            text={routeParams.hooponopono.line4}
-          />
-          <TextWithShadow
-            reduceFont={reduceFontSize}
-            text={routeParams.hooponopono.line5}
-          />
-        </ContainerHooponopono>
-      </ImageBackground>
-    </Container>
+    <>
+      <Container activeOpacity={0.9} onPress={handleCount}>
+        <StatusBar style="light" />
+        <ImageBackground style={styles.container} source={bg}>
+          <HeaderScreen iconColor={themeGlobal.colors.white} />
+          <ContainerHooponopono>
+            <TextWithShadow text={String(count)} sizeNumber={86} />
+            <TextWithShadow
+              reduceFont={reduceFontSize}
+              text={routeParams.hooponopono.line1}
+            />
+            <TextWithShadow
+              reduceFont={reduceFontSize}
+              text={routeParams.hooponopono.line2}
+            />
+            <TextWithShadow
+              reduceFont={reduceFontSize}
+              text={routeParams.hooponopono.line3}
+            />
+            <TextWithShadow
+              reduceFont={reduceFontSize}
+              text={routeParams.hooponopono.line4}
+            />
+            <TextWithShadow
+              reduceFont={reduceFontSize}
+              text={routeParams.hooponopono.line5}
+            />
+          </ContainerHooponopono>
+        </ImageBackground>
+      </Container>
+    </>
   );
 };
 

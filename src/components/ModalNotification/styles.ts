@@ -72,11 +72,12 @@ export const ModalContainerCancelButton = styled.TouchableOpacity`
 `;
 export const ModalTextCancelButton = styled.Text`
   ${(props) => css`
-    color: ${`${props.theme.colors.secondary}`};
+    color: ${`${props.theme.colors.chakras[0]}`};
     font-size: ${`${props.theme.fontSize.mainText}`};
   `}
-  font-family: ${({ theme }) => theme.fonts.regular};
+  font-family: ${({ theme }) => theme.fonts.lobster};
   text-align: center;
+  letter-spacing: 1.5px;
 `;
 export const ModalContainerOkButton = styled.TouchableOpacity<ButtonProps>`
   flex: 1;
@@ -89,7 +90,7 @@ export const ModalContainerOkButton = styled.TouchableOpacity<ButtonProps>`
         `
       : css`
           align-items: center;
-          background-color: ${`${props.theme.colors.red}`};
+          background-color: ${`${props.theme.colors.chakras[0]}`};
         `}
   padding-top: ${`${pixelSizeVertical(20)}px`};
   padding-bottom: ${`${pixelSizeVertical(20)}px`};

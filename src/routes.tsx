@@ -6,6 +6,7 @@ import Home from './screens/Home';
 import NewHooponopono from './screens/NewHooponopono';
 import MyHooponopono from './screens/MyHooponopono';
 import Hooponopono from './screens/Hooponopono';
+import Splash from './screens/Splash';
 
 interface ItensProps {
   id: string;
@@ -20,6 +21,7 @@ interface ItensProps {
 }
 
 export type RootStackParamList = {
+  Splash: undefined;
   Home: undefined;
   NewHooponopono:
     | {
@@ -36,11 +38,12 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppRoutes: React.FC = () => (
   <NavigationContainer>
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Splash"
       screenOptions={{
         headerShown: false,
       }}
     >
+      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="NewHooponopono" component={NewHooponopono} />
       <Stack.Screen name="MyHooponopono" component={MyHooponopono} />

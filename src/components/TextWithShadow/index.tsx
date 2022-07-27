@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextProps } from 'react-native';
 
+import { FadeInDown } from 'react-native-reanimated';
 import { Container } from './styles';
 import themeGlobal from '../../global/styles';
 
@@ -17,6 +18,7 @@ const TextWithShadow: React.FC<ITextProps> = ({
   ...rest
 }) => (
   <Container
+    entering={FadeInDown}
     reduceFont={reduceFont}
     sizeNumber={sizeNumber}
     style={{

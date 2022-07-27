@@ -1,4 +1,5 @@
 import React from 'react';
+import { FadeInUp } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
 import { Container, IconBack, IconContainer, TitleScreen } from './styles';
 import themeGlobal from '../../global/styles';
@@ -26,7 +27,10 @@ const HeaderScreen: React.FC<IProps> = ({
         />
       </IconContainer>
       {text && (
-        <TitleScreen color={iconColor || themeGlobal.colors.primary}>
+        <TitleScreen
+          entering={FadeInUp}
+          color={iconColor || themeGlobal.colors.primary}
+        >
           {text}
         </TitleScreen>
       )}
