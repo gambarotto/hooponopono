@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-
+import * as Notifications from 'expo-notifications';
 import { useRoute } from '@react-navigation/native';
 import { ImageBackground } from 'react-native';
 import { Container, styles, ContainerHooponopono } from './styles';
@@ -22,17 +22,35 @@ const Hooponopono: React.FC = () => {
   const [reduceFontSize, setReduceFontSize] = useState(false);
   const [count, setCount] = useState(0);
 
+  const createNewNotification = useCallback((titleHop: string) => {
+    Notifications.scheduleNotificationAsync({
+      content: {
+        title: `Vamos fazer um ho'oponopono?`,
+        body: ` Você já fez o ho'oponopono ${titleHop} hoje?`,
+        badge: 1,
+      },
+      trigger: {
+        seconds: 5,
+        repeats: false,
+      },
+    });
+  }, []);
+
   useEffect(() => {
     Object.keys(routeParams.hooponopono).forEach((prop) => {
       if (routeParams.hooponopono[prop].length > 27) setReduceFontSize(true);
     });
-  }, [routeParams.hooponopono]);
+    return () => {
+      createNewNotification(routeParams.title);
+    };
+  }, [createNewNotification, routeParams.hooponopono, routeParams.title]);
 
   const handleCount = useCallback(() => {
     if (count < 108) {
       setCount((state) => state + 1);
     }
   }, [count]);
+
   return (
     <>
       <Container activeOpacity={0.9} onPress={handleCount}>

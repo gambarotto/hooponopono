@@ -1,16 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, ImageBackground } from 'react-native';
-import {
-  FadeInUp,
-  FadeOutDown,
-  runOnJS,
-  SlideInLeft,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import HeaderScreen from '../../components/HeaderScreen';
 
 import {
