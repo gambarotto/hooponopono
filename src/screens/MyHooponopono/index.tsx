@@ -1,6 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, ImageBackground } from 'react-native';
-import { FadeInUp } from 'react-native-reanimated';
+import {
+  FadeInUp,
+  FadeOutDown,
+  runOnJS,
+  SlideInLeft,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import HeaderScreen from '../../components/HeaderScreen';
@@ -59,11 +67,15 @@ const MyHooponopono: React.FC = () => {
       );
     }
   }
-  useFocusEffect(
-    useCallback(() => {
-      loadData();
-    }, []),
-  );
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     loadData();
+  //   }, []),
+  // );
+  useEffect(() => {
+    loadData();
+  }, []);
+
   const handleSelect = useCallback(
     (item: ItensProps) => {
       navigation.navigate('Hooponopono', item);
@@ -108,7 +120,7 @@ const MyHooponopono: React.FC = () => {
   return (
     <ImageBackground style={styles.container} source={bg}>
       <HeaderScreen text={`Meus Ho'oponoponos`} />
-      <TextInformation entering={FadeInUp}>
+      <TextInformation>
         {!noData
           ? 'Estes são seus ho’oponoponos, selecione o que você deseja fazer'
           : 'Ops.......Voce ainda não criou um ho’oponopono, aperte o botão abaixo para criar o seu primeiro'}
@@ -129,7 +141,7 @@ const MyHooponopono: React.FC = () => {
           keyExtractor={(item) => item.id}
           renderItem={({ item, index }) => (
             <ContainerItem
-              entering={FadeInUp}
+              // entering={FadeInUp}
               style={[
                 {
                   shadowColor: '#000',

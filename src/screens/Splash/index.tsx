@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ImageBackground } from 'react-native';
-import { FadeIn } from 'react-native-reanimated';
+import { useNavigation } from '@react-navigation/native';
 import { Logo, styles } from './styles';
 import splash from '../../assets/images/splash.png';
 import logo from '../../assets/images/logo.png';
 
-const Splash: React.FC = () => (
-  <ImageBackground
-    source={splash}
-    style={styles.container}
-    resizeMode="contain"
-  >
-    <Logo entering={FadeIn.delay(500)} source={logo} />
-  </ImageBackground>
-);
+const Splash: React.FC = () => {
+  const { navigate } = useNavigation();
+
+  useEffect(() => {
+    const wait = setTimeout(() => navigate('Home'), 3000);
+    return () => clearTimeout(wait);
+  }, [navigate]);
+  return (
+    <ImageBackground
+      source={splash}
+      style={styles.container}
+      resizeMode="contain"
+    >
+      <Logo source={logo} />
+    </ImageBackground>
+  );
+};
 
 export default Splash;

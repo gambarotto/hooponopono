@@ -2,10 +2,8 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { ImageBackground } from 'react-native';
 import MainButton from '../../components/MainButton';
-
 import logo from '../../assets/images/logo.png';
 import bg from '../../assets/images/bg-home.png';
-
 import { Logo, styles, ContainerButtons } from './styles';
 
 const Home: React.FC = () => {

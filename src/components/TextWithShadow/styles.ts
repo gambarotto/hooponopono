@@ -1,4 +1,3 @@
-import Animated from 'react-native-reanimated';
 import styled, { css } from 'styled-components/native';
 import { fontPixel } from '../../helpers/sizeCalculator';
 
@@ -7,7 +6,7 @@ interface TextProps {
   sizeNumber: number | undefined;
 }
 
-export const Container = styled(Animated.Text)<TextProps>`
+export const Container = styled.Text<TextProps>`
   ${(props) => css`
     color: ${`${props.theme.colors.white}`};
   `}

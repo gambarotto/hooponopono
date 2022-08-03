@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import Animated from 'react-native-reanimated';
 import styled from 'styled-components/native';
 import {
   pixelSizeHorizontal,
@@ -18,7 +17,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-export const ContainerLogo = styled(Animated.View)`
+export const ContainerLogo = styled.View`
   width: ${`${widthPixel(150)}px`};
 `;
-export const Logo = styled(Animated.Image)``;
+export const Logo = styled.Image``;

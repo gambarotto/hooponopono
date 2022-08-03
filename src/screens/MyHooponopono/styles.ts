@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import styled, { css } from 'styled-components/native';
-import Animated from 'react-native-reanimated';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
   heightPixel,
@@ -24,7 +23,7 @@ export const styles = StyleSheet.create({
   },
 });
 export const Container = styled.ImageBackground``;
-export const TextInformation = styled(Animated.Text)`
+export const TextInformation = styled.Text`
   ${(props) => css`
     color: ${`${props.theme.colors.primary}`};
     font-size: ${`${props.theme.fontSize.mainText}`};
@@ -40,7 +39,7 @@ export const ContainerButton = styled.View`
   padding-left: ${`${pixelSizeHorizontal(20)}px`};
   padding-right: ${`${pixelSizeHorizontal(20)}px`};
 `;
-export const ContainerItem = styled(Animated.View)`
+export const ContainerItem = styled.View`
   flex-direction: row;
   justify-content: space-between;
   height: ${`${heightPixel(70)}px`};

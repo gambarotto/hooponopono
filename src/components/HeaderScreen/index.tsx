@@ -28,7 +28,7 @@ const HeaderScreen: React.FC<IProps> = ({
       </IconContainer>
       {text && (
         <TitleScreen
-          entering={FadeInUp}
+          // entering={FadeInUp}
           color={iconColor || themeGlobal.colors.primary}
         >
           {text}
