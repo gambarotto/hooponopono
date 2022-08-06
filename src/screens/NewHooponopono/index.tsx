@@ -117,6 +117,7 @@ const NewHooponopono: React.FC = () => {
   };
 
   const handleSave = useCallback(async () => {
+    // verifica se está preenchido
     if (hooponopono.title.length <= 0) {
       ToastAndroid.showWithGravity(
         'Digite um título',
@@ -125,6 +126,7 @@ const NewHooponopono: React.FC = () => {
       );
       return;
     }
+    // edição de hooponopono
     if (routeParams !== undefined) {
       try {
         const hooponoponosDB = await AsyncStorage.getItem('@hooponoponos');
@@ -150,7 +152,9 @@ const NewHooponopono: React.FC = () => {
           error,
         );
       }
-    } else {
+    }
+    // novo hooponopono
+    else {
       try {
         const hooponoponosBD = await AsyncStorage.getItem('@hooponoponos');
         if (hooponoponosBD) {

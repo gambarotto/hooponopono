@@ -12,8 +12,7 @@ const { statusBarHeight } = Constants;
 const HEIGHT_DEVICE = Dimensions.get('window').height;
 
 export const Container = styled.ScrollView`
-  flex: 1;
-  position: relative;
+  height: ${`${HEIGHT_DEVICE}px`};
   ${(props) => css`
     background-color: ${`${props.theme.colors.white}`};
   `}
@@ -21,6 +20,7 @@ export const Container = styled.ScrollView`
 export const styles = StyleSheet.create({
   background: {
     flex: 1,
+    position: 'relative',
     height: HEIGHT_DEVICE,
     marginTop: statusBarHeight,
     paddingTop: pixelSizeVertical(20),
@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     paddingLeft: pixelSizeHorizontal(20),
     paddingRight: pixelSizeHorizontal(20),
     alignItems: 'center',
+    justifyContent: 'flex-start',
   },
 });
 
@@ -56,7 +57,6 @@ export const BoxInputs = styled.View`
   padding-right: ${`${pixelSizeHorizontal(20)}px`};
   align-items: center;
   justify-content: center;
-  margin-bottom: ${`${pixelSizeVertical(24)}px`};
 `;
 export const ContainerTextInput = styled.View`
   height: ${`${heightPixel(40)}px`};

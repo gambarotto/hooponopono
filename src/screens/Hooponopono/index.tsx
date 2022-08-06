@@ -8,8 +8,10 @@ import bg from '../../assets/images/bg-hoop.png';
 import HeaderScreen from '../../components/HeaderScreen';
 import themeGlobal from '../../global/styles';
 import TextWithShadow from '../../components/TextWithShadow';
+import { cancelNotification } from '../../helpers/Notifications';
 
 interface ItensProps {
+  id: string;
   title: string;
   hooponopono: {
     [line1: string]: string;
@@ -22,34 +24,61 @@ const Hooponopono: React.FC = () => {
   const [reduceFontSize, setReduceFontSize] = useState(false);
   const [count, setCount] = useState(0);
 
-  const createNewNotification = useCallback((titleHop: string) => {
-    Notifications.scheduleNotificationAsync({
+  const getAllNotifications = useCallback(async (): Promise<
+    Notifications.NotificationRequest[]
+  > => {
+    const notifications =
+      await Notifications.getAllScheduledNotificationsAsync();
+    return notifications;
+  }, []);
+  const createNewNotification = useCallback(async () => {
+    await Notifications.scheduleNotificationAsync({
       content: {
         title: `Vamos fazer um ho'oponopono?`,
-        body: ` Você já fez o ho'oponopono ${titleHop} hoje?`,
+        body: ` Você já fez seu ho'oponopono ${routeParams.title} hoje?`,
+        data: { idHooponopono: routeParams.id, date: new Date(Date.now()) },
         badge: 1,
       },
       trigger: {
-        seconds: 5,
+        // seconds: 60 * (60 * 24),
+        seconds: 3,
         repeats: false,
       },
     });
-  }, []);
+  }, [routeParams.id, routeParams.title]);
+  const scheduleNotification = useCallback(async () => {
+    const allNotifications = await getAllNotifications();
 
-  useEffect(() => {
-    Object.keys(routeParams.hooponopono).forEach((prop) => {
-      if (routeParams.hooponopono[prop].length > 27) setReduceFontSize(true);
-    });
-    return () => {
-      createNewNotification(routeParams.title);
-    };
-  }, [createNewNotification, routeParams.hooponopono, routeParams.title]);
+    if (allNotifications.length > 0) {
+      const scheduleNotificationData = allNotifications.find(
+        (notif) => notif.content.data.idHooponopono === routeParams.id,
+      );
 
+      if (scheduleNotificationData) {
+        await cancelNotification(scheduleNotificationData.identifier);
+      }
+    }
+
+    await createNewNotification();
+  }, [createNewNotification, getAllNotifications, routeParams.id]);
   const handleCount = useCallback(() => {
     if (count < 108) {
       setCount((state) => state + 1);
     }
   }, [count]);
+  useEffect(() => {
+    Object.keys(routeParams.hooponopono).forEach((prop) => {
+      if (routeParams.hooponopono[prop].length > 27) setReduceFontSize(true);
+    });
+    return () => {
+      scheduleNotification();
+    };
+  }, [
+    createNewNotification,
+    routeParams.hooponopono,
+    routeParams.title,
+    scheduleNotification,
+  ]);
 
   return (
     <>

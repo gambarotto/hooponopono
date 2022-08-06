@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FlatList, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import HeaderScreen from '../../components/HeaderScreen';
 
 import {
@@ -16,7 +16,7 @@ import {
   TitleItem,
 } from './styles';
 import bg from '../../assets/images/bg-all.png';
-// import ModalNotification from '../../components/ModalNotification';
+import ModalNotification from '../../components/ModalNotification';
 import handleErrors from '../../helpers/errors';
 import MainButton from '../../components/MainButton';
 
@@ -36,8 +36,10 @@ type TitleItemProps = '0' | '1' | '2' | '3' | '4' | '5' | '6';
 const MyHooponopono: React.FC = () => {
   const [hooponoponos, setHooponoponos] = useState<ItensProps[]>([]);
   const [noData, setNoData] = useState(false);
-  // const [selectedHooponopono, setSelectedHooponopono] = useState<ItensProps>();
-  //  const [openedModal, setOpenedModal] = useState(false);
+  const [selectedHooponopono, setSelectedHooponopono] = useState<ItensProps>(
+    {} as ItensProps,
+  );
+  const [openedModal, setOpenedModal] = useState(false);
   const navigation = useNavigation();
 
   async function loadData(): Promise<void> {
@@ -58,14 +60,11 @@ const MyHooponopono: React.FC = () => {
       );
     }
   }
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     loadData();
-  //   }, []),
-  // );
-  useEffect(() => {
-    loadData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      loadData();
+    }, []),
+  );
 
   const handleSelect = useCallback(
     (item: ItensProps) => {
@@ -73,22 +72,25 @@ const MyHooponopono: React.FC = () => {
     },
     [navigation],
   );
-  // const handleDelete = useCallback((item: ItensProps) => {
-  //   setSelectedHooponopono(item);
-  //   setOpenedModal(true);
-  // }, []);
-  const modalHandleDelete = useCallback(async (item: ItensProps) => {
+  const handleDelete = useCallback((item: ItensProps) => {
+    setSelectedHooponopono(item);
+    setOpenedModal(true);
+  }, []);
+  const modalHandleDelete = useCallback(async () => {
     try {
       const hooponoponosDB = await AsyncStorage.getItem('@hooponoponos');
       const formattedHooponoponos = JSON.parse(hooponoponosDB as string);
 
       if (formattedHooponoponos.length > 0) {
         const hooponoponoConv = formattedHooponoponos as ItensProps[];
-        const newData = hooponoponoConv.filter((hoop) => hoop.id !== item.id);
-
+        const newData = hooponoponoConv.filter(
+          (hoop) => hoop.id !== selectedHooponopono.id,
+        );
         await AsyncStorage.setItem('@hooponoponos', JSON.stringify(newData));
-        setHooponoponos((state) => state.filter((hoop) => hoop.id !== item.id));
-        // setOpenedModal(false);
+        setHooponoponos((state) =>
+          state.filter((hoop) => hoop.id !== selectedHooponopono.id),
+        );
+        setOpenedModal(false);
         setNoData(newData.length === 0);
       }
     } catch (error) {
@@ -97,7 +99,7 @@ const MyHooponopono: React.FC = () => {
         error,
       );
     }
-  }, []);
+  }, [selectedHooponopono.id]);
   const handleEdit = useCallback(
     (item: ItensProps, index: number) => {
       navigation.navigate('NewHooponopono', { item, index });
@@ -107,6 +109,10 @@ const MyHooponopono: React.FC = () => {
   const handleCreateHooponopono = useCallback(() => {
     navigation.navigate('NewHooponopono');
   }, [navigation]);
+  const chakraColors = useCallback((index: number) => {
+    const chakraColor = index % 7;
+    return String(chakraColor) as unknown as TitleItemProps;
+  }, []);
 
   return (
     <ImageBackground style={styles.container} source={bg}>
@@ -130,9 +136,9 @@ const MyHooponopono: React.FC = () => {
           contentContainerStyle={{ padding: 4 }}
           data={hooponoponos}
           keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item, index }) => (
             <ContainerItem
-              // entering={FadeInUp}
               style={[
                 {
                   shadowColor: '#000',
@@ -142,21 +148,20 @@ const MyHooponopono: React.FC = () => {
                   },
                   shadowOpacity: 0,
                   shadowRadius: 1.84,
-
                   elevation: 2,
                 },
               ]}
             >
               <ContainerTitleItem onPress={() => handleSelect(item)}>
                 <TitleItem
-                  colorChakra={String(index) as unknown as TitleItemProps}
-                >{`${item.title} ${index}`}</TitleItem>
+                  colorChakra={chakraColors(index)}
+                >{`${item.title}`}</TitleItem>
               </ContainerTitleItem>
               <ContainerIcons>
                 <ContainerIcon onPress={() => handleEdit(item, index)}>
                   <Icon name="edit" />
                 </ContainerIcon>
-                <ContainerIcon onPress={() => modalHandleDelete(item)}>
+                <ContainerIcon onPress={() => handleDelete(item)}>
                   <Icon name="delete" />
                 </ContainerIcon>
               </ContainerIcons>
@@ -164,13 +169,13 @@ const MyHooponopono: React.FC = () => {
           )}
         />
       )}
-      {/* <ModalNotification
+      <ModalNotification
         title={`Excluir Ho'oponopono`}
         text={`Deseja realmente excluir o Ho'oponopono ${selectedHooponopono?.title}`}
         confirmFunction={modalHandleDelete}
         isVisible={openedModal}
         cancelButtonFunction={() => setOpenedModal(false)}
-      /> */}
+      />
     </ImageBackground>
   );
 };

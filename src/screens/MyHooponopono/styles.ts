@@ -60,7 +60,7 @@ export const ContainerTitleItem = styled.TouchableOpacity`
 export const TitleItem = styled.Text<TitleItemProps>`
   ${({ theme, colorChakra }) => css`
     color: ${`${theme.colors.chakras[colorChakra]}`};
-    font-size: ${`${theme.fontSize.mainText}`};
+    font-size: ${`${fontPixel(24)}px`};
   `}
   font-family: ${({ theme }) => theme.fonts.lobster};
   letter-spacing: 1px;

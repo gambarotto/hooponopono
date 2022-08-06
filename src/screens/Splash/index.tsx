@@ -9,7 +9,7 @@ const Splash: React.FC = () => {
   const { navigate } = useNavigation();
 
   useEffect(() => {
-    const wait = setTimeout(() => navigate('Home'), 3000);
+    const wait = setTimeout(() => navigate('Home'), 2000);
     return () => clearTimeout(wait);
   }, [navigate]);
   return (

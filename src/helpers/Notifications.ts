@@ -92,7 +92,6 @@ const scheduleNotification = async ({
       repeats: true,
     },
   });
-  console.log('notif id on scheduling', id);
   return id;
 };
 
@@ -112,7 +111,7 @@ async function registerForPushNotificationsAsync(): Promise<string> {
       throw new Error('Failed to get push token for push notification!');
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
+    // console.log(token);
   } else {
     throw new Error('Must use physical device for Push Notifications');
   }

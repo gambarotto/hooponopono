@@ -8,6 +8,7 @@ import { Logo, styles, ContainerButtons } from './styles';
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
+
   return (
     <ImageBackground style={styles.container} source={bg}>
       <Logo source={logo} resizeMode="contain" />
