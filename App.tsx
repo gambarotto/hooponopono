@@ -32,7 +32,7 @@ const App: React.FC = () => {
         await Updates.reloadAsync(); // depende da sua estratégia
       }
     }
-    // updateApp();
+    updateApp();
   }, []);
   return fontsLoaded ? (
     <ThemeProvider theme={themeGlobal}>
